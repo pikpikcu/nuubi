@@ -1,4 +1,4 @@
-# Nuubi Tools (Scanner, Recon.)
+### Nuubi Tools (Scanner, Recon.)
 >
               ::::    ::: :::    ::: :::    ::: ::::::::: ::::::::::: 
               :+:+:   :+: :+:    :+: :+:    :+: :+:    :+:    :+:     
@@ -34,13 +34,13 @@
 ![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/nuub.png)
 
 
-# About NUUBI 
+### About NUUBI 
 
     INFO: NUUBI is a Recon Tools, Scanners and tools for penetration testing.Reconnaissance is the first phase of penetration       
     testing which means gathering information before any real attacks are planned So NUUBI is an Incredible fast recon tool for 
     penetration tester which is specially designed for Reconnaissance phase.
 
-# How to install NUUBI
+### How to install NUUBI
 
 > root@kali~# git clone https://github.com/pikpikcu/nuubi.git
 
