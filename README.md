@@ -48,3 +48,8 @@
 
 > root@kali~# python3 nuub.py -h
 
+
+ Credits
+------------
+
+* [dxdragon](https://github.com/rizsyad)
