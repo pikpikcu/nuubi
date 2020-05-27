@@ -4,6 +4,7 @@ import sys
 import os
 import json
 import webtech
+import re
 import requests as res
 from requests import get
 from os import system
@@ -77,3 +78,18 @@ def banner(ip):
 def traceroute(url):
 	response = get('https://api.hackertarget.com/mtr/?q='+url).text
 	sys.stdout.write(response)
+def crawler(url):
+
+    content = get(url).text
+
+    regex_title = re.compile(r"<title>(.*?)<\/title>")
+    title = re.findall(regex_title, content)
+
+    regex_links = re.compile(r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
+    link = re.findall(regex_links, content)
+
+    robots = get(url + "/robots.txt").text
+
+    print("Title: "+ ''.join(title) + "\n")
+    print("extract links: \n" + '\n'.join(link) + "\n")
+    print("robots.txt: \n" + robots)

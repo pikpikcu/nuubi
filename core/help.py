@@ -15,7 +15,9 @@ from plugins.modules import (traceroute,\
                              dnslookup,\
                              subnetlookup,\
                              httpheader,\
-                             techno)
+                             techno,\
+                             crawler)
+
 #from plugins.modules import respondir
 
 def help():
@@ -34,7 +36,8 @@ def help():
         parser.add_argument('-T',help='Traceroute')
         parser.add_argument('--url',help='URL and website scanner for potentially malicious websites')
         parser.add_argument('--username', help='Github username of target')  
-        parser.add_argument('--whois',help='Whois of target domain')   
+        parser.add_argument('--whois',help='Whois of target domain')
+        parser.add_argument('--crawl', help='crawler target url')   
         args = parser.parse_args()
        # Banner garbing
         if args.b:
@@ -126,6 +129,11 @@ def help():
             print("[+] Whois lookup of target domain\n")
             os.system('tput setaf 7')
             whois(args.whois)
+            exit()
+        if args.crawl:
+            print("[+] crawler target url")
+            os.system("tput setaf 7")
+            crawler(args.crawl)
             exit()
 
         
