@@ -49,5 +49,3 @@
 
 # Credits & Thanks
 []! hackertarget
-
-# END
