@@ -29,9 +29,10 @@
    </a>
  </a>
 </p>
-<center><table><tr>
-<td><img src="https://raw.githubusercontent.com/pikpikcu/nuubi/master/nuub.png" width="250px" height="250px"></td>
-</center>
+
+
+![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/nuub.png)
+
 
 # About NUUBI 
 
