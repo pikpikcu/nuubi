@@ -22,7 +22,7 @@
    <img src="https://img.shields.io/badge/telegram--blue.svg">
    </a>
   <a href="https://github.com/pikpikcu/nuubi/releases">
-   <img src="https://img.shields.io/badge/release-V.2.1[Beta]-red.svg">
+   <img src="https://img.shields.io/badge/release-V.2.1-red.svg">
    </a>
    <a href="https://github.com/pikpikcu/nuubi/blob/master/LICENSE">
    <img src="https://img.shields.io/badge/LICENSE-red.svg">
