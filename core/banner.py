@@ -12,6 +12,11 @@ def logo():
 +#+  +#+#+# +#+    +#+ +#+    +#+ +#+    +#+    +#+     
 #+#   #+#+# #+#    #+# #+#    #+# #+#    #+#    #+#     
 ###    ####  ########   ########  ######### ########### 
-		[+] V1.0.0 
-		[+] Codename: pikpikcu                              
+						[+] V1.0.0 
+	
+By pikpikcu & Rizsyad
+
+github.com/pikpikcu
+github.com/Rizsyad
+
 """)
