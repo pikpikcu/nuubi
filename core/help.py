@@ -22,22 +22,54 @@ from plugins.modules import (traceroute,\
 
 def help():
         parser = argparse.ArgumentParser()
-        parser.add_argument('-b',help='Banner grabing of target ip address')
-        parser.add_argument('-S',help='subnetlookup of target')
-        parser.add_argument('-c', help='Cms detect with headers')
-        parser.add_argument('--cert',help=('Certificate Transparency log monitor'))
-        parser.add_argument('-d',help='Dnslookup of target domain')
-        parser.add_argument('-e',help='Extract links from target url(https/http)')
-        parser.add_argument('-ip',help='GeoIP lookup of target ip address')
-        parser.add_argument('-H',help='Httpheaders of target url')
-        parser.add_argument('-N',help='Nmapscan of target domain')
-       # parser.add_argument('-R',help='Check Dir Response')
-        parser.add_argument('--sub',help='Subdomain lookup of target domain')
-        parser.add_argument('-T',help='Traceroute')
-        parser.add_argument('--url',help='URL and website scanner for potentially malicious websites')
-        parser.add_argument('--username', help='Github username of target')  
-        parser.add_argument('--whois',help='Whois of target domain')
-        parser.add_argument('--crawl', help='crawler target url')   
+        parser.add_argument('-b',
+                            metavar='Banner',
+                            help='Banner grabing of target ip address')
+        parser.add_argument('-S',
+                            metavar='subnetlookup',
+                            help='subnetlookup of target')
+        parser.add_argument('-c', 
+                            metavar='',
+                            help='Cms detect with headers')
+        parser.add_argument('--cert',
+                            metavar='Certificate',
+                            help=('Certificate Transparency log monitor'))
+        parser.add_argument('-d',
+                            metavar='Dns',
+                            help='Dnslookup of target domain')
+        parser.add_argument('-e',
+                            metavar='Extract',
+                            help='Extract links from target url(https/http)')
+        parser.add_argument('-ip',
+                            metavar='GeoIP',
+                            help='GeoIP lookup of target ip address')
+        parser.add_argument('-H',
+                            metavar='Httpheaders',
+                            help='Httpheaders of target url')
+        parser.add_argument('-N',
+                            metavar='nmap',
+                            help='Nmapscan of target domain')
+       # parser.add_argument('-R',
+       #                    metavar=''
+       #                    help='Check Dir Response')
+        parser.add_argument('--sub',
+                            metavar='subdomain',
+                            help='Subdomain lookup of target domain')
+        parser.add_argument('-T',
+                            metavar='traceroute',    
+                            help='Traceroute')
+        parser.add_argument('--url',
+                            metavar='Url',
+                            help='URL and website scanner for potentially malicious websites')
+        parser.add_argument('--username', 
+                            metavar='Username',
+                            help='Github username of target')  
+        parser.add_argument('--whois',
+                            metavar='Whois',
+                            help='Whois of target domain')
+        parser.add_argument('--crawl', 
+                            metavar='crawl',
+                            help='crawler target url')   
         args = parser.parse_args()
        # Banner garbing
         if args.b:
