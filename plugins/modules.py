@@ -12,55 +12,77 @@ from os import system
 # Nuubi Modules
 
 #HACKERTARGET
+def findshareddns(url):
+	print("[+] Start Find hosts sharing DNS servers ")
+	print("[+] Target: "+url)
+	response = get('https://api.hackertarget.com/findshareddns/?q='+url).text
+	sys.stdout.write(response)
 def nping(url):
+	print("[+] Start test Ping Response ")
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/nping/?q='+url).text
 	sys.stdout.write(response)
 def zone(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/zonetransfer/?q='+url).text
 	sys.stdout.write(response)
 def nmap(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/nmap/?q='+url).text
 	sys.stdout.write(response)
 def banner(ip):
+	print("[+] Target: "+ip)
 	response = get('https://api.hackertarget.com/bannerlookup/?q='+ip).text
 	sys.stdout.write(response)
 def traceroute(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/mtr/?q='+url).text
 	sys.stdout.write(response)
 def revdns(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/reversedns/?q=' +url).text
 	sys.stdout.write(response)
 def reverseip(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/reverseiplookup/?q='+url).text
 	sys.stdout.write(response)
 def whois(url):
+	print("[+] Target: "+url)
 	response = get('http://api.hackertarget.com/whois/?q=' + url).text
 	sys.stdout.write(response)
 def geo(ip):
+	print("[+] Target: "+ip)
 	response = get('https://api.hackertarget.com/geoip/?q=' + ip).text
 	print(response,"\n")
 def dnslookup(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/dnslookup/?q=' + url).text
 	sys.stdout.write(response)
-def subnetlookup(cidr):
-	response = get('https://api.hackertarget.com/subnetcalc/?q='+ cidr).text
+def subnetlookup(url):
+	print("[+] Target: "+url)
+	response = get('https://api.hackertarget.com/subnetcalc/?q='+ url).text
 	print(response)
 def sub(domain):
+	print("[+] Target: "+domain)
 	response = get('https://api.hackertarget.com/hostsearch/?q=' + domain).text
 	print(response,"\n")
 def extract(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/pagelinks/?q=' + url).text
 	sys.stdout.write(response)
 def httpheader(url):
+	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/httpheaders/?q=' + url).text
 	sys.stdout.write(response)
 ####
 def certspotter(url):
+	print("[+] Target: "+url)
 	target = res.get('https://api.certspotter.com/v1/issuances?domain='+url+'&expand=dns_names&expand=issuer&expand=cert | jq ".[].dns_names[]" | sed "s/\"//g" | sed "s/\*\.//g" | sort -u | grep '+url).text
 	data = json.loads(target)
 	dump = json.dumps(data,sort_keys=True, indent=4)
 	print(dump)
 def urlscan(url):
+	print("[+] Target: "+url)
 	response = res.get('https://urlscan.io/api/v1/search/?q=domain:'+url).text
 	data = json.loads(response)
 	dump = json.dumps(data,sort_keys=True, indent=4)
@@ -93,9 +115,7 @@ def gitemails(username):
 #    os.system("echo "+target+ "| hakrawler -plain | hakcheckurl | grep -v 404")
 
 def crawler(url):
-
     content = get(url).text
-
     regex_title = re.compile(r"<title>(.*?)<\/title>")
     title = re.findall(regex_title, content)
 
@@ -103,11 +123,12 @@ def crawler(url):
     link = re.findall(regex_links, content)
 
     robots = get(url + "/robots.txt").text
-
+	
     print("Title: "+ ''.join(title) + "\n")
     print("extract links: \n" + '\n'.join(link) + "\n")
     print("robots.txt: \n" + robots)
 def techno(url):
+	print("[+] Target: "+url)
 	obj = webtech.WebTech()
 	results = obj.start_from_url(url, timeout=1)
 	system('tput setaf 9')

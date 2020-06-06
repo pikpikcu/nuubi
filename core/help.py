@@ -20,7 +20,8 @@ from plugins.modules import (traceroute,\
                              reverseip,\
                              revdns,\
                              zone,\
-                             nping)
+                             nping,\
+                             findshareddns)
 
 #from plugins.modules import respondir
 
@@ -62,6 +63,9 @@ def help():
         parser.add_argument('-T',
                             metavar='traceroute',    
                             help='Traceroute')
+        parser.add_argument('-f',
+                            metavar='findshareddns',
+                            help='Find hosts sharing DNS servers')
         parser.add_argument('--url',
                             metavar='Url',
                             help='URL and website scanner for potentially malicious websites')
@@ -86,11 +90,15 @@ def help():
         parser.add_argument('--nping',
                             metavar='nping',
                             help='nping, test Ping Response')
+       
         args = parser.parse_args()
         if args.nping:
-            print("[+] Start test Ping Response from target ip address\n")
             os.system('tput setaf 10')
             nping(args.nping)
+            exit()
+        if args.f:
+            os.system('tput setaf 10')
+            findshareddns(args.f)
             exit()
         if args.revdns:
             print("[+] Reverse DNS from target ip address\n")
