@@ -16,7 +16,8 @@ from plugins.modules import (traceroute,\
                              subnetlookup,\
                              httpheader,\
                              techno,\
-                             crawler)
+                             crawler,\
+                             reverseip)
 
 #from plugins.modules import respondir
 
@@ -70,7 +71,15 @@ def help():
         parser.add_argument('--crawl', 
                             metavar='crawl',
                             help='crawler target url')   
+        parser.add_argument('--reverse',
+                            metavar='reverse',
+                            help='reverse ip lookup')
         args = parser.parse_args()
+        if args.reverse:
+            print("[+] Reverse IP Lookup from target ip address\n")
+            os.system('tput setaf 10')
+            reverseip(args.reverse)
+            exit()
        # Banner garbing
         if args.b:
             print("[+] Banner Grabing from target ip address\n")
