@@ -33,6 +33,31 @@
 
 ![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/nuub.png)
 
+#### ✔️ ***Features***:
+
+- __Infromation Modules__ :
+
+- [x] Banner grabing
+- [x] Subnetlookup
+- [x] Cms detect
+- [x] Certificate Transparency log monitor
+- [x] Dnslookup
+- [x] Extract links
+- [x] GeoIP lookup 
+- [x] Httpheaders
+- [x] Nmapscan
+- [x] Subdomain lookup
+- [x] Traceroute
+- [x] Find hosts sharing DNS servers
+- [x] URL and website scanner for potentially malicious websites
+- [x] Github username
+- [x] Whois
+- [x] Crawler
+- [x] Reverse ip
+- [x] Reverse DNS
+- [x] Zonetransfer
+- [x] Nping test Ping Response
+- [x] Check an Autonomous System Number (ASN)
 
 ### About NUUBI 
 
