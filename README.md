@@ -65,13 +65,25 @@
     testing which means gathering information before any real attacks are planned So NUUBI is an Incredible fast recon tool for 
     penetration tester which is specially designed for Reconnaissance phase.
 
-### How to install NUUBI
+#### ✔️ ***How to install NUUBI***:
+
+### ✔️ Kali Linu ,parros os, ubuntu
 
 > root@kali~# git clone https://github.com/pikpikcu/nuubi.git
 
 > root@kali~# pip install -r requirements.txt
 
 > root@kali~# python3 nuub.py -h
+
+### ✔️ Termux
+
+> pikpik~$ pkg install python git -y
+
+> pikpik~$ git clone https://github.com/pikpikcu/nuubi.git | cd nuubi
+
+> pikpik~$ pip install -r requirements.txt
+
+> pikpik~$ python3 nuub.py -h
 
 
  Credits
