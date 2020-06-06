@@ -10,6 +10,9 @@ from requests import get
 from os import system
 
 # Nuubi Modules
+def revdns(url):
+	response = get('https://api.hackertarget.com/reversedns/?q=' +url).text
+	sys.stdout.write(response)
 def reverseip(url):
 	response = get('https://api.hackertarget.com/reverseiplookup/?q='+url).text
 	sys.stdout.write(response)
