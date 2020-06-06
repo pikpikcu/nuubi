@@ -21,7 +21,8 @@ from plugins.modules import (traceroute,\
                              revdns,\
                              zone,\
                              nping,\
-                             findshareddns)
+                             findshareddns,\
+                             aslookup)
 
 #from plugins.modules import respondir
 
@@ -90,8 +91,15 @@ def help():
         parser.add_argument('--nping',
                             metavar='nping',
                             help='nping, test Ping Response')
+        parser.add_argument('--AS',
+                            metavar='aslookup',
+                            help='Check an Autonomous System Number (ASN)')
        
         args = parser.parse_args()
+        if args.AS:
+            os.system('tput setaf 10')
+            aslookup(args.AS)
+            exit()
         if args.nping:
             os.system('tput setaf 10')
             nping(args.nping)
@@ -101,23 +109,19 @@ def help():
             findshareddns(args.f)
             exit()
         if args.revdns:
-            print("[+] Reverse DNS from target ip address\n")
             os.system('tput setaf 10')
             revdns(args.revdns)
             exit()
         if args.zone:
-            print("[+] Retrieve DNS Zone from target ip address\n")
             os.system('tput setaf 10')
             zone(args.zone)
             exit()
         if args.reverse:
-            print("[+] Reverse IP Lookup from target ip address\n")
             os.system('tput setaf 10')
             reverseip(args.reverse)
             exit()
        # Banner garbing
         if args.b:
-            print("[+] Banner Grabing from target ip address\n")
             os.system('tput setaf 10')
             banner(args.b)
             exit()
@@ -128,43 +132,36 @@ def help():
             exit()
        # CMS
         if args.c:
-            print("[+] Detecting CMS with Identified Technologies and Custom Headers from target url\n")
             os.system('tput setaf 10')
             techno(args.c)
             exit()
        # Certificate
         if args.cert:
-            print("[+]  Certificate Transparency log monitor\n")
             os.system('tput setaf 5')
             certspotter(args.cert)
             exit()
        # DNS
         if args.d:
-            print("[+] DNS lookup of target domain\n")
             os.system('tput setaf 10')
             dnslookup(args.d)
             exit()
        # Extrack links
         if args.e:
-            print("[+] Extracting all hidden and visiable links from target url\n")
             os.system('tput setaf 10')
             extract(args.e)
             exit()
        # GeoIp
         if args.ip:
-            print("[+] Geoip lookup of target Ip address\n")
             os.system('tput setaf 10')
             geo(args.ip)
             exit() 
        # Http header
         if args.H:
-            print("[+] Extracing http headers of target url\n")
             os.system('tput setaf 10')
             httpheader(args.H)
             exit()
        # NMAP
         if args.N:
-            print("[+] Port scanning of target domain\n")
             os.system('tput setaf 10')
             nmap(args.N)
             exit()
@@ -179,7 +176,6 @@ def help():
  #          exit()
        # subdomains
         if args.sub:
-            print("[+] Subdomain lookup from target domain\n")
             os.system('tput setaf 7')
             sub(args.sub)
             exit()
@@ -191,7 +187,6 @@ def help():
             exit()
        # Traceroute
         if args.T:
-            print("[+] Traceroute\n")
             os.system('tput setaf 6')
             traceroute(args.T)
             exit()
@@ -202,7 +197,6 @@ def help():
             exit()
        # whois
         if args.whois:
-            print("[+] Whois lookup of target domain\n")
             os.system('tput setaf 7')
             whois(args.whois)
             exit()

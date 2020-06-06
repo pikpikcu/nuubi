@@ -12,6 +12,11 @@ from os import system
 # Nuubi Modules
 
 #HACKERTARGET
+def aslookup(url):
+	print("[+] Start Check an Autonomous System Number (ASN)")
+	print("[+] Target: "+url)
+	response = get('https://api.hackertarget.com/aslookup/?q='+url).text
+	sys.stdout.write(response)
 def findshareddns(url):
 	print("[+] Start Find hosts sharing DNS servers ")
 	print("[+] Target: "+url)
@@ -23,59 +28,73 @@ def nping(url):
 	response = get('https://api.hackertarget.com/nping/?q='+url).text
 	sys.stdout.write(response)
 def zone(url):
+	print("[+] Retrieve DNS Zone")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/zonetransfer/?q='+url).text
 	sys.stdout.write(response)
 def nmap(url):
+	print("[+] Port scanning of target domain")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/nmap/?q='+url).text
 	sys.stdout.write(response)
 def banner(ip):
+	print("[+] Start Banner Grabing ")
 	print("[+] Target: "+ip)
 	response = get('https://api.hackertarget.com/bannerlookup/?q='+ip).text
 	sys.stdout.write(response)
 def traceroute(url):
+	print("[+] Start Traceroute")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/mtr/?q='+url).text
 	sys.stdout.write(response)
 def revdns(url):
+	print("[+] Reverse DNS from target ip address")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/reversedns/?q=' +url).text
 	sys.stdout.write(response)
 def reverseip(url):
+	print("[+] Reverse IP Lookup ")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/reverseiplookup/?q='+url).text
 	sys.stdout.write(response)
 def whois(url):
+	print("[+] Whois lookup of target domain")
 	print("[+] Target: "+url)
 	response = get('http://api.hackertarget.com/whois/?q=' + url).text
 	sys.stdout.write(response)
 def geo(ip):
+	print("[+] Geoip lookup of target Ip address")
 	print("[+] Target: "+ip)
 	response = get('https://api.hackertarget.com/geoip/?q=' + ip).text
 	print(response,"\n")
 def dnslookup(url):
+	print("[+] DNS lookup of target domain")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/dnslookup/?q=' + url).text
 	sys.stdout.write(response)
 def subnetlookup(url):
+	print("[+] Start subnetlookup")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/subnetcalc/?q='+ url).text
 	print(response)
 def sub(domain):
+	print("[+] Subdomain lookup from target domain")
 	print("[+] Target: "+domain)
 	response = get('https://api.hackertarget.com/hostsearch/?q=' + domain).text
 	print(response,"\n")
 def extract(url):
+	print("[+] Extracting all hidden and visiable links")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/pagelinks/?q=' + url).text
 	sys.stdout.write(response)
 def httpheader(url):
+	print("[+] Extracing http headers of target url")
 	print("[+] Target: "+url)
 	response = get('https://api.hackertarget.com/httpheaders/?q=' + url).text
 	sys.stdout.write(response)
 ####
 def certspotter(url):
+	print("[+]  Certificate Transparency log monitor")
 	print("[+] Target: "+url)
 	target = res.get('https://api.certspotter.com/v1/issuances?domain='+url+'&expand=dns_names&expand=issuer&expand=cert | jq ".[].dns_names[]" | sed "s/\"//g" | sed "s/\*\.//g" | sort -u | grep '+url).text
 	data = json.loads(target)
@@ -128,6 +147,7 @@ def crawler(url):
     print("extract links: \n" + '\n'.join(link) + "\n")
     print("robots.txt: \n" + robots)
 def techno(url):
+	print("[+] Detecting CMS with Identified Technologies and Custom Headers from target url\n")
 	print("[+] Target: "+url)
 	obj = webtech.WebTech()
 	results = obj.start_from_url(url, timeout=1)
