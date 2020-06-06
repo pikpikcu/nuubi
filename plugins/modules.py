@@ -5,93 +5,196 @@ import os
 import json
 import webtech
 import re
+import requests
 import requests as res
 from requests import get
 from os import system
+import shutil
+from json import dumps
 
 # Nuubi Modules
-
+url = 'api.hackertarget.com'
 #HACKERTARGET
-def aslookup(url):
+def aslookup(target):
 	print("[+] Start Check an Autonomous System Number (ASN)")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/aslookup/?q='+url).text
-	sys.stdout.write(response)
-def findshareddns(url):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/aslookup/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def findshareddns(target):
 	print("[+] Start Find hosts sharing DNS servers ")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/findshareddns/?q='+url).text
-	sys.stdout.write(response)
-def nping(url):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/findshareddns/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def nping(target):
 	print("[+] Start test Ping Response ")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/nping/?q='+url).text
-	sys.stdout.write(response)
-def zone(url):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/nping/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def zone(target):
 	print("[+] Retrieve DNS Zone")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/zonetransfer/?q='+url).text
-	sys.stdout.write(response)
-def nmap(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/zonetransfer/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def nmap(target):
 	print("[+] Port scanning of target domain")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/nmap/?q='+url).text
-	sys.stdout.write(response)
-def banner(ip):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/nmap/",
+							 params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def banner(target):
 	print("[+] Start Banner Grabing ")
-	print("[+] Target: "+ip)
-	response = get('https://api.hackertarget.com/bannerlookup/?q='+ip).text
-	sys.stdout.write(response)
-def traceroute(url):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"bannerlookup/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def traceroute(target):
 	print("[+] Start Traceroute")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/mtr/?q='+url).text
-	sys.stdout.write(response)
-def revdns(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/mtr/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def revdns(target):
 	print("[+] Reverse DNS from target ip address")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/reversedns/?q=' +url).text
-	sys.stdout.write(response)
-def reverseip(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/reversedns/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+def reverseip(target):
 	print("[+] Reverse IP Lookup ")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/reverseiplookup/?q='+url).text
-	sys.stdout.write(response)
-def whois(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/reverseiplookup/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def whois(target):
 	print("[+] Whois lookup of target domain")
-	print("[+] Target: "+url)
-	response = get('http://api.hackertarget.com/whois/?q=' + url).text
-	sys.stdout.write(response)
-def geo(ip):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/whois/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def geo(target):
 	print("[+] Geoip lookup of target Ip address")
-	print("[+] Target: "+ip)
-	response = get('https://api.hackertarget.com/geoip/?q=' + ip).text
-	print(response,"\n")
-def dnslookup(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/geoip/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def dnslookup(target):
 	print("[+] DNS lookup of target domain")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/dnslookup/?q=' + url).text
-	sys.stdout.write(response)
-def subnetlookup(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/dnslookup/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def subnetlookup(target):
 	print("[+] Start subnetlookup")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/subnetcalc/?q='+ url).text
-	print(response)
-def sub(domain):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/subnetcalc/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def sub(target):
 	print("[+] Subdomain lookup from target domain")
-	print("[+] Target: "+domain)
-	response = get('https://api.hackertarget.com/hostsearch/?q=' + domain).text
-	print(response,"\n")
-def extract(url):
+	print("[+] Target: "+target)
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/hostsearch/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+	print(*results, sep = "\n")
+	
+def extract(target):
 	print("[+] Extracting all hidden and visiable links")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/pagelinks/?q=' + url).text
-	sys.stdout.write(response)
-def httpheader(url):
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/pagelinks/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
+def httpheader(target):
 	print("[+] Extracing http headers of target url")
-	print("[+] Target: "+url)
-	response = get('https://api.hackertarget.com/httpheaders/?q=' + url).text
-	sys.stdout.write(response)
+	print("[+] Target: "+target)
+	
+	headers = {
+		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
+	params = (('q', target),)
+
+	results = requests.get("https://"+url+"/httpheaders/",
+							headers=headers, params=params)
+	results = results.text.split('\n')
 ####
 def certspotter(url):
 	print("[+]  Certificate Transparency log monitor")
@@ -153,3 +256,4 @@ def techno(url):
 	results = obj.start_from_url(url, timeout=1)
 	system('tput setaf 9')
 	sys.stdout.write(results)
+
