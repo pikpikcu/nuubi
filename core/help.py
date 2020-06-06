@@ -17,8 +17,9 @@ from plugins.modules import (traceroute,\
                              httpheader,\
                              techno,\
                              crawler,\
-                             reverseip.\
-                             revdns)
+                             reverseip,\
+                             revdns,\
+                             zone)
 
 #from plugins.modules import respondir
 
@@ -78,11 +79,19 @@ def help():
         parser.add_argument('--revdns',
                             metavar='revdns',
                             help='reverse DNS')
+        parser.add_argument('--zone',
+                            metavar='zone',
+                            help='zonetransfer, Retrieve DNS Zone')
         args = parser.parse_args()
         if args.revdns:
             print("[+] Reverse DNS from target ip address\n")
             os.system('tput setaf 10')
             revdns(args.revdns)
+            exit()
+        if args.zone:
+            print("[+] Retrieve DNS Zone from target ip address\n")
+            os.system('tput setaf 10')
+            zone(args.zone)
             exit()
         if args.reverse:
             print("[+] Reverse IP Lookup from target ip address\n")
