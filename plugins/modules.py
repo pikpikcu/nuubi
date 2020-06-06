@@ -246,7 +246,6 @@ def gitemails(username):
 		os.system('tput setaf 12')
 		print("[+] Aww Snap Unable to find out the email address!")
 
-
 #def respondir(target):
 #    os.system("tput setaf 6")
 #    os.system("echo "+target+ "| hakrawler -plain | hakcheckurl | grep -v 404")
