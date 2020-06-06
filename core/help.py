@@ -17,7 +17,8 @@ from plugins.modules import (traceroute,\
                              httpheader,\
                              techno,\
                              crawler,\
-                             reverseip)
+                             reverseip.\
+                             revdns)
 
 #from plugins.modules import respondir
 
@@ -74,7 +75,15 @@ def help():
         parser.add_argument('--reverse',
                             metavar='reverse',
                             help='reverse ip lookup')
+        parser.add_argument('--revdns',
+                            metavar='revdns',
+                            help='reverse DNS')
         args = parser.parse_args()
+        if args.revdns:
+            print("[+] Reverse DNS from target ip address\n")
+            os.system('tput setaf 10')
+            revdns(args.revdns)
+            exit()
         if args.reverse:
             print("[+] Reverse IP Lookup from target ip address\n")
             os.system('tput setaf 10')
