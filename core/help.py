@@ -95,15 +95,9 @@ def help():
         parser.add_argument('--AS',
                             metavar='aslookup',
                             help='Check an Autonomous System Number (ASN)')
-        parser.add_argument('--scan',
-                            metavar='scanhost',
-                            help='nmap scan host')
-       
+        
         args = parser.parse_args()
-        if args.scan:
-            os.system('tput setaf 10')
-            scanhost(args.scan)
-            exit()
+        
         if args.AS:
             os.system('tput setaf 10')
             aslookup(args.AS)
