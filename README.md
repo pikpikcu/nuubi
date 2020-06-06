@@ -58,6 +58,7 @@
 - [x] Zonetransfer
 - [x] Nping test Ping Response
 - [x] Check an Autonomous System Number (ASN)
+- [x] Cloudflare Cookie Scraper
 
 ### About NUUBI 
 

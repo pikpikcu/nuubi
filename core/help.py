@@ -22,7 +22,8 @@ from plugins.modules import (traceroute,\
                              zone,\
                              nping,\
                              findshareddns,\
-                             aslookup
+                             aslookup,
+                             cookie
                              )
 
 #from plugins.modules import respondir
@@ -95,9 +96,28 @@ def help():
         parser.add_argument('--AS',
                             metavar='aslookup',
                             help='Check an Autonomous System Number (ASN)')
+<<<<<<< HEAD
+        parser.add_argument('--scan',
+                            metavar='scanhost',
+                            help='nmap scan host')
+        parser.add_argument('--cookie',
+                            metavar='cookie',
+                            help='Cloudflare cookie scraper')
+       
+        args = parser.parse_args()
+        if args.cookie:
+            os.system('tput setaf 10')
+            cookie(args.cookie)
+            exit()
+        if args.scan:
+            os.system('tput setaf 10')
+            scanhost(args.scan)
+            exit()
+=======
         
         args = parser.parse_args()
         
+>>>>>>> a2f6fb3d5efa4eef65bc9a6ec469b5ca6938fa85
         if args.AS:
             os.system('tput setaf 10')
             aslookup(args.AS)
