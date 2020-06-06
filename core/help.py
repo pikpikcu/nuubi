@@ -19,7 +19,8 @@ from plugins.modules import (traceroute,\
                              crawler,\
                              reverseip,\
                              revdns,\
-                             zone)
+                             zone,\
+                             nping)
 
 #from plugins.modules import respondir
 
@@ -82,7 +83,15 @@ def help():
         parser.add_argument('--zone',
                             metavar='zone',
                             help='zonetransfer, Retrieve DNS Zone')
+        parser.add_argument('--nping',
+                            metavar='nping',
+                            help='nping, test Ping Response')
         args = parser.parse_args()
+        if args.nping:
+            print("[+] Start test Ping Response from target ip address\n")
+            os.system('tput setaf 10')
+            nping(args.nping)
+            exit()
         if args.revdns:
             print("[+] Reverse DNS from target ip address\n")
             os.system('tput setaf 10')

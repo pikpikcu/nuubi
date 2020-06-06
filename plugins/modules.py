@@ -12,6 +12,9 @@ from os import system
 # Nuubi Modules
 
 #HACKERTARGET
+def nping(url):
+	response = get('https://api.hackertarget.com/nping/?q='+url).text
+	sys.stdout.write(response)
 def zone(url):
 	response = get('https://api.hackertarget.com/zonetransfer/?q='+url).text
 	sys.stdout.write(response)
