@@ -10,6 +10,9 @@ from requests import get
 from os import system
 
 # Nuubi Modules
+def reverseip(url):
+	response = get('https://api.hackertarget.com/reverseiplookup/?q='+url).text
+	sys.stdout.write(response)
 def certspotter(url):
 	target = res.get('https://api.certspotter.com/v1/issuances?domain='+url+'&expand=dns_names&expand=issuer&expand=cert | jq ".[].dns_names[]" | sed "s/\"//g" | sed "s/\*\.//g" | sort -u | grep '+url).text
 	data = json.loads(target)
