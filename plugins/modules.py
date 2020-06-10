@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+import urllib.request
+import urllib.parse
+import json
 import sys
 import os
 import json
@@ -171,6 +174,8 @@ def subnetlookup(target):
 def sub(target):
 	print("[+] Subdomain lookup from target domain")
 	print("[+] Target: "+target)
+	print("[+] Starting Hackertarget...")
+	domains= set(target)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -179,6 +184,15 @@ def sub(target):
 							headers=headers, params=params)
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
+	print("\n[+] Starting Crt.sh...")
+	with urllib.request.urlopen('https://crt.sh/?output=json&q=' + urllib.parse.quote('%.' + target)) as f:
+         data = json.loads(f.read().decode('utf-8'))
+         for crt in data:
+                for domain in crt['name_value'].split('\n'):
+                    if not domain in domains:
+                        domains.add(domain)
+                        print(domain)
+
 	
 def extract(target):
 	print("[+] Extracting all hidden and visiable links")
