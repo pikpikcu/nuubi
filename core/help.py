@@ -99,15 +99,9 @@ def help():
         parser.add_argument('--cookie',
                             metavar='cookie',
                             help='Cloudflare cookie scraper')
-        parser.add_argument('-Z',
-                            metavar='zone-h',
-                            help='Cloudflare cookie scraper')
        
         args = parser.parse_args()
-        if args.Z:
-            os.system('tput setaf 10')
-            zoneh(args.Z)
-            exit()
+        
         if args.cookie:
             os.system('tput setaf 10')
             cookie(args.cookie)
