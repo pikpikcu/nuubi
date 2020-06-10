@@ -31,7 +31,47 @@
 </p>
 
 
-![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/nuub.png)
+![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/logo.png)
+
+>     
+
+    
+      usage: nuub.py [-h] [-b Banner] [-S subnetlookup] [-c] [--cert Certificate]
+                    [-d Dns] [-e Extract] [-ip GeoIP] [-H Httpheaders] [-N nmap]
+                    [--sub subdomain] [-T traceroute] [-f findshareddns]
+                    [--url Url] [--username Username] [--whois Whois]
+                    [--crawl crawl] [--reverse reverse] [--revdns revdns]
+                    [--zone zone] [--nping nping] [--AS aslookup] [--cookie cookie]
+
+      optional arguments:
+        -h, --help           show this help message and exit
+        -b Banner            Banner grabing of target ip address
+        -S subnetlookup      subnetlookup of target
+        -c                   Cms detect with headers
+        --cert Certificate   Certificate Transparency log monitor
+        -d Dns               Dnslookup of target domain
+        -e Extract           Extract links from target url(https/http)
+        -ip GeoIP            GeoIP lookup of target ip address
+        -H Httpheaders       Httpheaders of target url
+        -N nmap              Nmapscan of target domain
+        --sub subdomain      Subdomain lookup of target domain
+        -T traceroute        Traceroute
+        -f findshareddns     Find hosts sharing DNS servers
+        --url Url            URL and website scanner for potentially malicious
+                            websites
+        --username Username  Github username of target
+        --whois Whois        Whois of target domain
+        --crawl crawl        crawler target url
+        --reverse reverse    reverse ip lookup
+        --revdns revdns      reverse DNS
+        --zone zone          zonetransfer, Retrieve DNS Zone
+        --nping nping        nping, test Ping Response
+        --AS aslookup        Check an Autonomous System Number (ASN)
+        --cookie cookie      Cloudflare cookie scraper
+
+#### ✔️ ***Example***:
+
+> python3 nuub.py "arguments" example.site
 
 #### ✔️ ***Features***:
 
