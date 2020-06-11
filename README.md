@@ -1,13 +1,6 @@
 ### Nuubi Tools (Scanner, Recon.)
->
-                        ::::    ::: :::    ::: :::    ::: ::::::::: ::::::::::: 
-                        :+:+:   :+: :+:    :+: :+:    :+: :+:    :+:    :+:     
-                        :+:+:+  +:+ +:+    +:+ +:+    +:+ +:+    +:+    +:+     
-                        +#+ +:+ +#+ +#+    +:+ +#+    +:+ +#++:++#+     +#+     
-                        +#+  +#+#+# +#+    +#+ +#+    +#+ +#+    +#+    +#+     
-                        #+#   #+#+# #+#    #+# #+#    #+# #+#    #+#    #+#     
-                        ###    ####  ########   ########  ######### ########### 
 
+<h4 align="center"><img src="https://raw.githubusercontent.com/pikpikcu/nuubi/master/NUUBI.png" width="300px" height="300px">
 </a>
 <h4 align="center">Details</h4>                
 <p align="center">
