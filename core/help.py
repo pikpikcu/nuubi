@@ -101,8 +101,8 @@ def help():
                             metavar='cookie',
                             help='Cloudflare cookie scraper')
         parser.add_argument('-v',
-                            metavar='cookie',
-                            help='verbose')
+                            metavar='',
+                            help='Check code status response')
        
         args = parser.parse_args()
         if args.v:
