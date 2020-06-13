@@ -10,6 +10,7 @@ import webtech
 import re
 import requests
 import cfscrape
+import bs4
 import requests as res
 from requests import get
 from bs4 import BeautifulSoup
@@ -17,12 +18,28 @@ from os import system
 import shutil
 from json import dumps
 
+class bcolors:
+    black='\033[30m'
+    red='\033[31m'
+    green='\033[32m'
+    orange='\033[33m'
+    blue='\033[34m'
+    purple='\033[35m'
+    cyan='\033[36m'
+    lightgrey='\033[37m'
+    darkgrey='\033[90m'
+    lightred='\033[91m'
+    lightgreen='\033[92m'
+    yellow='\033[93m'
+    lightblue='\033[94m'
+    pink='\033[95m'
+    lightcyan='\033[96m'
 # Nuubi Modules
 url = 'api.hackertarget.com'
 #HACKERTARGET
 def aslookup(target):
-	print("[+] Start Check an Autonomous System Number (ASN)")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start Check an Autonomous System Number (ASN)")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -32,8 +49,8 @@ def aslookup(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def findshareddns(target):
-	print("[+] Start Find hosts sharing DNS servers ")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start Find hosts sharing DNS servers ")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -43,8 +60,8 @@ def findshareddns(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def nping(target):
-	print("[+] Start test Ping Response ")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start test Ping Response ")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -54,8 +71,8 @@ def nping(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def zone(target):
-	print("[+] Retrieve DNS Zone")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Retrieve DNS Zone")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -66,8 +83,8 @@ def zone(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def nmap(target):
-	print("[+] Port scanning of target domain")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Port scanning of target domain")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -77,8 +94,8 @@ def nmap(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def banner(target):
-	print("[+] Start Banner Grabing ")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start Banner Grabing ")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 	params = (('q', target),)
@@ -88,8 +105,8 @@ def banner(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def traceroute(target):
-	print("[+] Start Traceroute")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start Traceroute")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -100,8 +117,8 @@ def traceroute(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def revdns(target):
-	print("[+] Reverse DNS from target ip address")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Reverse DNS from target ip address")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -112,8 +129,8 @@ def revdns(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def reverseip(target):
-	print("[+] Reverse IP Lookup ")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Reverse IP Lookup ")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -124,8 +141,8 @@ def reverseip(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def whois(target):
-	print("[+] Whois lookup of target domain")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Whois lookup of target domain")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -136,8 +153,8 @@ def whois(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def geo(target):
-	print("[+] Geoip lookup of target Ip address")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Geoip lookup of target Ip address")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -148,8 +165,8 @@ def geo(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def dnslookup(target):
-	print("[+] DNS lookup of target domain")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] DNS lookup of target domain")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -160,8 +177,8 @@ def dnslookup(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def subnetlookup(target):
-	print("[+] Start subnetlookup")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Start subnetlookup")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -172,9 +189,9 @@ def subnetlookup(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def sub(target):
-	print("[+] Subdomain lookup from target domain")
-	print("[+] Target: "+target)
-	print("[+] Starting Hackertarget...")
+	print(bcolors.green+"[+] Subdomain lookup from target domain")
+	print("[+] Target: ",bcolors.red, target)
+	print(bcolors.green+"[+] Starting Hackertarget...", bcolors.lightcyan)
 	domains= set(target)
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -195,8 +212,8 @@ def sub(target):
 
 	
 def extract(target):
-	print("[+] Extracting all hidden and visiable links")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Extracting all hidden and visiable links")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -207,8 +224,8 @@ def extract(target):
 	results = results.text.split('\n')
 	print(*results, sep = "\n")
 def httpheader(target):
-	print("[+] Extracing http headers of target url")
-	print("[+] Target: "+target)
+	print(bcolors.green+"[+] Extracing http headers of target url")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
@@ -220,10 +237,9 @@ def httpheader(target):
 	print(*results, sep = "\n")
 ####
 def certspotter(target):
-	os.system('tput setaf 7')
+	print(bcolors.green+"[+] Certificate Transparency log monitor")
+	print("[+] Target: ",bcolors.red, target, bcolors.lightcyan)
 	try:
-		print("[+] Certificate Transparency log monitor")
-		print("[+] Target: "+target)
 		headers = {
 		'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36', }
 		results = requests.get('https://api.certspotter.com/v1/issuances?domain='+target+'&expand=dns_names&expand=issuer&expand=cert | jq ".[].dns_names[]" | sed "s/\"//g" | sed "s/\*\.//g" | sort -u | grep '+target,headers=headers)
@@ -233,29 +249,30 @@ def certspotter(target):
 		os.system('tput setaf 12')
 		print("[+] Error!")
 def urlscan(url):
-	print("[+] Target: "+url)
+	print(bcolors.green+"[+] Check url")
+	print("[+] Target: ",bcolors.red, url, bcolors.lightcyan)
 	response = res.get('https://urlscan.io/api/v1/search/?q=domain:'+url).text
 	data = json.loads(response)
 	dump = json.dumps(data,sort_keys=True, indent=4)
 	print(dump)
 def gitusers(username):
+	print(bcolors.yellow+"[+] Dumping Sensitive information from github")
+	print("[+] Target: ",bcolors.red, username, bcolors.lightcyan)
 	response = res.get("https://api.github.com/users/" + username).text
 	data = json.loads(response)
-	print("[+] Dumping Sensitive information from github")
-	os.system('tput setaf 9')
-	print("[+] Name : ", str(data['name']))
-	print("[+] Location : ", str(data['location']))
-	print("[+] ID : ", str(data['id']))
-	print("[+] Website : ", str(data['blog']))
-	print("[+] Number of public github Repository : " ,str(data['public_repos']))
-	print("[+] Number of public gist Repository : ",str(data['public_gists']))
+	print(bcolors.green+"[+] Name : ",bcolors.cyan, str(data['name']))
+	print(bcolors.green+"[+] Location : ",bcolors.cyan, str(data['location']))
+	print(bcolors.green+"[+] ID : ",bcolors.cyan, str(data['id']))
+	print(bcolors.green+"[+] Website : ",bcolors.cyan, str(data['blog']))
+	print(bcolors.green+"[+] Number of public github Repository : " ,bcolors.cyan, str(data['public_repos']))
+	print(bcolors.green+"[+] Number of public gist Repository : ",bcolors.cyan, str(data['public_gists']))
 def gitemails(username):
 	try:
 		response = res.get("https://api.github.com/users/%s/events/public" %(username))
 		jsn = response.json()
 		data = jsn[0]
 		dump = data["payload"]["commits"][0]["author"]["email"]
-		print("[+] Email data : ", dump)	
+		print(bcolors.green+"[+] Email data : ",bcolors.cyan, dump)	
 	except KeyError:
 		os.system('tput setaf 12')
 		print("[+] Aww Snap Unable to find out the email address!")
@@ -265,31 +282,34 @@ def gitemails(username):
 #    os.system("echo "+target+ "| hakrawler -plain | hakcheckurl | grep -v 404")
 
 def crawler(url):
-    content = get(url).text
-    regex_title = re.compile(r"<title>(.*?)<\/title>")
-    title = re.findall(regex_title, content)
+	print(bcolors.green+"[+] Start crawler")
+	print("[+] Target: ",bcolors.red, url, bcolors.lightcyan)
+	try:
+		content = get(url).text
+		regex_title = re.compile(r"<title>(.*?)<\/title>")
+		title = re.findall(regex_title, content)
 
-    regex_links = re.compile(r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
-    link = re.findall(regex_links, content)
+		regex_links = re.compile(r"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+")
+		link = re.findall(regex_links, content)
 
-    robots = get(url + "/robots.txt").text
-	
-    print("Title: "+ ''.join(title) + "\n")
-    print("extract links: \n" + '\n'.join(link) + "\n")
-    print("robots.txt: \n" + robots)
+		robots = get(url + "/robots.txt").text
+		
+		print("Title: "+ ''.join(title) + "\n")
+		print("extract links: \n" + '\n'.join(link) + "\n")
+		print("robots.txt: \n" + robots)
+	except KeyError:
+		pass
 def techno(url):
-	print("[+] Detecting CMS with Identified Technologies and Custom Headers from target url\n")
-	print("[+] Target: "+url)
+	print(bcolors.green+"[+] Detecting CMS with Identified Technologies and Custom Headers from target url\n")
+	print("[+] Target: ",bcolors.red, url, bcolors.lightcyan)
 	obj = webtech.WebTech()
 	results = obj.start_from_url(url, timeout=1)
-	system('tput setaf 9')
 	sys.stdout.write(results)
 def cookie(url):
 	sess = cfscrape.create_scraper()
 	try:
-		os.system('tput setaf 6')
-		print("[+] Cloudflare cookie scraper ")
-		print("[+] Target: "+url )
+		print(bcolors.green+"[+] Cloudflare cookie scraper ")
+		print("[+] Target: ",bcolors.red, url, bcolors.lightcyan)
 		request = "GET / HTTP/1.1\r\n"
 		cookie_value, user_agent = cfscrape.get_cookie_string(url)
 		request += "Cookie: %s\r\nUser_Agent: %s\r\n" % (cookie_value, user_agent)
@@ -301,6 +321,16 @@ def cookie(url):
 		print("\n[+] Scraper ")
 		print(out)
 	except KeyError:
-		os.system('tput setaf 12')
-		print("[+] Error!")
-	
+		pass
+def hosts(host):
+    host = host.split()[0]    
+    try:              
+        r = requests.get(host, verify=False)       
+        html=bs4.BeautifulSoup(r.text,features="html.parser")               
+        status_code = str(r.status_code)              
+        length = str(len(r.text))              
+        title = html.title.text               
+        print(bcolors.orange+'  Url:',bcolors.cyan ,host,'\n',bcolors.orange,'Status-Code:',bcolors.cyan, status_code,'\n',bcolors.orange,'Respon-Lenght:',bcolors.cyan, length,'\n',bcolors.orange,'Title:',bcolors.cyan, title,'\n')
+		      
+    except KeyError:                
+           pass
