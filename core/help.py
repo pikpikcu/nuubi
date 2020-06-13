@@ -22,8 +22,9 @@ from plugins.modules import (traceroute,\
                              zone,\
                              nping,\
                              findshareddns,\
-                             aslookup,
-                             cookie
+                             aslookup,\
+                             cookie,\
+                             hosts
                              )
 
 #from plugins.modules import respondir
@@ -99,80 +100,69 @@ def help():
         parser.add_argument('--cookie',
                             metavar='cookie',
                             help='Cloudflare cookie scraper')
+        parser.add_argument('-v',
+                            metavar='cookie',
+                            help='verbose')
        
         args = parser.parse_args()
-        
+        if args.v:
+            hosts(args.v)
+            exit()
         if args.cookie:
-            os.system('tput setaf 10')
             cookie(args.cookie)
             exit()
         if args.AS:
-            os.system('tput setaf 10')
             aslookup(args.AS)
             exit()
         if args.nping:
-            os.system('tput setaf 10')
             nping(args.nping)
             exit()
         if args.f:
-            os.system('tput setaf 10')
             findshareddns(args.f)
             exit()
         if args.revdns:
-            os.system('tput setaf 10')
             revdns(args.revdns)
             exit()
         if args.zone:
-            os.system('tput setaf 10')
             zone(args.zone)
             exit()
         if args.reverse:
-            os.system('tput setaf 10')
             reverseip(args.reverse)
             exit()
        # Banner garbing
         if args.b:
-            os.system('tput setaf 10')
             banner(args.b)
             exit()
        # Cdir
         if args.S:
-            os.system('tput setaf 10')
             subnetlookup(args.S)
             exit()
        # CMS
         if args.c:
-            os.system('tput setaf 10')
             techno(args.c)
             exit()
        # Certificate
         if args.cert:
-            os.system('tput setaf 5')
             certspotter(args.cert)
             exit()
        # DNS
         if args.d:
-            os.system('tput setaf 10')
             dnslookup(args.d)
             exit()
        # Extrack links
         if args.e:
-            os.system('tput setaf 10')
             extract(args.e)
             exit()
        # GeoIp
         if args.ip:
-            os.system('tput setaf 10')
             geo(args.ip)
             exit() 
        # Http header
         if args.H:
-            os.system('tput setaf 10')
             httpheader(args.H)
             exit()
        # NMAP
         if args.N:
-            os.system('tput setaf 10')
             nmap(args.N)
             exit()
        # Check status dir 
@@ -186,18 +176,14 @@ def help():
  #          exit()
        # subdomains
         if args.sub:
-            os.system('tput setaf 7')
             sub(args.sub)
             exit()
        # scan web
         if args.url:
-            print("[+] Check url\n")
-            os.system('tput setaf 6')
             urlscan(args.url)
             exit()
        # Traceroute
         if args.T:
-            os.system('tput setaf 6')
             traceroute(args.T)
             exit()
        # github username
@@ -207,11 +193,8 @@ def help():
             exit()
        # whois
         if args.whois:
-            os.system('tput setaf 7')
             whois(args.whois)
             exit()
         if args.crawl:
-            print("[+] crawler target url")
-            os.system("tput setaf 7")
             crawler(args.crawl)
             exit()
