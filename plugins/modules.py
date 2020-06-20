@@ -2,7 +2,6 @@
 
 import urllib.request
 import urllib.parse
-import json
 import sys
 import os
 import json
@@ -17,6 +16,10 @@ from bs4 import BeautifulSoup
 from os import system
 import shutil
 from json import dumps
+
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
 
 class bcolors:
     black='\033[30m'
@@ -324,8 +327,8 @@ def cookie(url):
 		pass
 def hosts(host):
     host = host.split()[0]    
-    try:              
-        r = requests.get(host, verify=False)       
+    try:             
+        r = requests.get("http://"+host, verify=False)       
         html=bs4.BeautifulSoup(r.text,features="html.parser")               
         status_code = str(r.status_code)              
         length = str(len(r.text))              
@@ -334,3 +337,56 @@ def hosts(host):
 		      
     except KeyError:                
            pass
+def regex(content):
+    pattern = "(\"|')(\/[\w\d?\/&=#.!:_-]{1,})(\"|')"
+    matches = re.findall(pattern, content)
+    response = ""
+    i = 0
+    for match in matches:
+        i += 1
+        if i == len(matches):
+            response += match[1]
+        else:
+            response += match[1] + "\n"
+    return(response)
+def dirs(url):
+		print(bcolors.green+"[+] Extract GET parameters from javascript files\n")
+		try:
+			dirs = "http://" + url
+			url = dirs + "/"
+			r = requests.get(url, verify=False)
+			soup = BeautifulSoup(r.text, 'html5lib')
+			scripts = soup.find_all('script')
+			linkArr = [dirs]
+			dirArr = []
+			for script in scripts:
+				try:
+					if script['src'][0] == "/" and script['src'][1] != "/":
+						script = url.split("/")[0:2] + script['src']
+						linkArr.append(script)
+					else:
+						pass
+				except:
+					pass
+			for link in linkArr:
+				res = requests.get(link, verify=False)
+				out = regex(res.text).split("\n")
+				for line in out:
+					pathArr = line.strip().split("/")
+					path = ""
+					for i in range(len(pathArr)):
+						if i == len(pathArr) - 1:
+							if "." in pathArr[i]:
+								pass
+							else:
+								path += pathArr[i] + "/"
+						else:
+							path += pathArr[i] + "/"
+					if path != "/" and path != "//":
+						dirArr.append(path.replace("//", "/").split("#")[0])
+					else:
+						pass
+			for directory in list(set(dirArr)):
+					print(directory)
+		except:
+			pass
