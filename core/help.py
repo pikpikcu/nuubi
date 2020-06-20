@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys,os,argparse
+import requests, os, argparse, re
 from plugins.modules import (traceroute,\
                              certspotter,\
                              urlscan,\
@@ -24,7 +25,8 @@ from plugins.modules import (traceroute,\
                              findshareddns,\
                              aslookup,\
                              cookie,\
-                             hosts
+                             hosts,\
+                             dirs
                              )
 
 #from plugins.modules import respondir
@@ -100,16 +102,24 @@ def help():
         parser.add_argument('--cookie',
                             metavar='cookie',
                             help='Cloudflare cookie scraper')
+        parser.add_argument('-E',
+                            metavar='',
+                            help='Extract GET parameters from javascript files')
         parser.add_argument('-v',
                             metavar='',
                             help='Check code status response')
+        
        
         args = parser.parse_args()
         if args.v:
+            print("[+] Check code status response\n") 
             hosts(args.v)
             exit()
         if args.cookie:
             cookie(args.cookie)
+            exit()
+        if args.E:
+            dirs(args.E)
             exit()
         if args.AS:
             aslookup(args.AS)
