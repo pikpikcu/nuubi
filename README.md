@@ -120,6 +120,10 @@
 
 > pikpik~$ python3 nuub.py -h
 
+### Donate!
+
+(I love coffee and am very addicted to coffee:v)
+<br><a href="https://www.buymeacoffee.com/pikpikcu"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" height="50px"></a>
 
  Credits
 ------------
