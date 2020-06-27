@@ -2,179 +2,140 @@
 
 import sys,os,argparse
 import requests, os, argparse, re
-from plugins.modules import (traceroute,\
-                             certspotter,\
-                             urlscan,\
-                             nmap,\
-                             gitusers,\
-                             gitemails,\
-                             extract,\
-                             banner,\
-                             sub,\
-                             geo,\
-                             whois,\
-                             dnslookup,\
-                             subnetlookup,\
-                             httpheader,\
-                             techno,\
-                             crawler,\
-                             reverseip,\
-                             revdns,\
-                             zone,\
-                             nping,\
-                             findshareddns,\
-                             aslookup,\
-                             cookie,\
-                             hosts,\
-                             dirs
-                             )
-
-#from plugins.modules import respondir
+from plugins.modules import *
+from core.banner import *
 
 def help():
-        parser = argparse.ArgumentParser()
-        parser.add_argument('-b',
-                            metavar='Banner',
-                            help='Banner grabing of target ip address')
-        parser.add_argument('-S',
-                            metavar='subnetlookup',
-                            help='subnetlookup of target')
-        parser.add_argument('-c', 
-                            metavar='',
-                            help='Cms detect with headers')
-        parser.add_argument('--cert',
-                            metavar='Certificate',
-                            help=('Certificate Transparency log monitor'))
-        parser.add_argument('-d',
-                            metavar='Dns',
-                            help='Dnslookup of target domain')
-        parser.add_argument('-e',
-                            metavar='Extract',
-                            help='Extract links from target url(https/http)')
-        parser.add_argument('-ip',
-                            metavar='GeoIP',
-                            help='GeoIP lookup of target ip address')
-        parser.add_argument('-H',
-                            metavar='Httpheaders',
-                            help='Httpheaders of target url')
-        parser.add_argument('-N',
-                            metavar='nmap',
-                            help='Nmapscan of target domain')
-       # parser.add_argument('-R',
-       #                    metavar=''
-       #                    help='Check Dir Response')
-        parser.add_argument('--sub',
-                            metavar='subdomain',
-                            help='Subdomain lookup of target domain')
-        parser.add_argument('-T',
-                            metavar='traceroute',    
-                            help='Traceroute')
-        parser.add_argument('-f',
-                            metavar='findshareddns',
-                            help='Find hosts sharing DNS servers')
-        parser.add_argument('--url',
-                            metavar='Url',
-                            help='URL and website scanner for potentially malicious websites')
-        parser.add_argument('--username', 
-                            metavar='Username',
-                            help='Github username of target')  
-        parser.add_argument('--whois',
-                            metavar='Whois',
-                            help='Whois of target domain')
-        parser.add_argument('--crawl', 
-                            metavar='crawl',
-                            help='crawler target url')   
-        parser.add_argument('--reverse',
-                            metavar='reverse',
-                            help='reverse ip lookup')
-        parser.add_argument('--revdns',
-                            metavar='revdns',
-                            help='reverse DNS')
-        parser.add_argument('--zone',
-                            metavar='zone',
-                            help='zonetransfer, Retrieve DNS Zone')
-        parser.add_argument('--nping',
-                            metavar='nping',
-                            help='nping, test Ping Response')
-        parser.add_argument('--AS',
-                            metavar='aslookup',
-                            help='Check an Autonomous System Number (ASN)')
-        parser.add_argument('--cookie',
-                            metavar='cookie',
-                            help='Cloudflare cookie scraper')
-        parser.add_argument('-E',
-                            metavar='',
-                            help='Extract GET parameters from javascript files')
-        parser.add_argument('-v',
-                            metavar='',
-                            help='Check code status response')
+        parser = argparse.ArgumentParser(add_help=False)
+        parser.add_argument("-h","--help",dest="help",action="store_true")
+        parser.add_argument("-b","--banner",dest="banner")
+        parser.add_argument("-s","--subnet",dest="subnet")
+        parser.add_argument("-c","--cms", dest="cms")
+        parser.add_argument("-d","--dns", dest="dns")
+        parser.add_argument("-e","--extract", dest="extract")
+        parser.add_argument("-H","--http", dest="http")
+        parser.add_argument("-n","--nmap", dest="nmap")
+        parser.add_argument("-S","--subdo",dest="subdo")   
+        parser.add_argument("-f","--find",dest="find")
+        parser.add_argument("-u","--username", dest="username")
+        parser.add_argument("-C","--crawl", dest="crawl")
+        parser.add_argument("-w","--whois",dest="whois")
+        parser.add_argument("-z","--zone",dest="zone")
+        parser.add_argument("-r","--reverse", dest="reverse")
+
+        parser.add_argument("--asn",dest="asn")
+        parser.add_argument("--nping",dest="nping")   
+        parser.add_argument("--cookie",dest="cookie")
+        parser.add_argument("--revdns",dest="revdns")
+        parser.add_argument("--cert",dest="cert")
+        parser.add_argument("--url",dest="url")
+        parser.add_argument("--response",dest="response")
+        parser.add_argument("--exj",dest="exj")
+
+        parser.add_argument("-T",dest="T")
+        parser.add_argument("-ip",dest="ip")
         
-       
         args = parser.parse_args()
-        if args.v:
-            print("[+] Check code status response\n") 
-            hosts(args.v)
+        # help
+        if args.help:
+            banner()
+            exit
+        # Banner garbing
+        if args.banner:
+            banner(args.banner)
             exit()
-        if args.cookie:
-            cookie(args.cookie)
+        # Subnet
+        if args.subnet:
+            subnetlookup(args.subnet)
             exit()
-        if args.E:
-            dirs(args.E)
+        # CMS
+        if args.cms:
+            techno(args.cms)
             exit()
-        if args.AS:
-            aslookup(args.AS)
+        # DNS
+        if args.dns:
+            dnslookup(args.dns)
             exit()
-        if args.nping:
-            nping(args.nping)
+        # Extrack links
+        if args.extract:
+            extract(args.extract)
             exit()
-        if args.f:
-            findshareddns(args.f)
+        # Http header
+        if args.http:
+            httpheader(args.http)
             exit()
-        if args.revdns:
-            revdns(args.revdns)
+        # NMAP
+        if args.nmap:
+            nmap(args.nmap)
             exit()
+        # subdomains
+        if args.subdo:
+            sub(args.subdo)
+            exit()
+        # finddns
+        if args.find:
+            findshareddns(args.find)
+            exit()
+        # github username
+        if args.username:
+            gitusers(args.username)
+            gitemails(args.username)
+            exit()
+        # crawl
+        if args.crawl:
+            crawler(args.crawl)
+            exit()
+        # whois
+        if args.whois:
+            whois(args.whois)
+            exit()
+        # zonetransfer
         if args.zone:
             zone(args.zone)
             exit()
+        # reversedns
         if args.reverse:
             reverseip(args.reverse)
             exit()
-       # Banner garbing
-        if args.b:
-            banner(args.b)
+
+        if args.response:
+            print("[+] Check code status response\n") 
+            hosts(args.response)
             exit()
-       # Cdir
-        if args.S:
-            subnetlookup(args.S)
+
+        if args.asn:
+            aslookup(args.asn)
             exit()
-       # CMS
-        if args.c:
-            techno(args.c)
+
+        if args.cookie:
+            cookie(args.cookie)
             exit()
+
+        if args.exj:
+            dirs(args.exj)
+            exit()
+
+        if args.nping:
+            nping(args.nping)
+            exit()
+
+    
+        if args.revdns:
+            revdns(args.revdns)
+            exit()
+       
        # Certificate
         if args.cert:
             certspotter(args.cert)
             exit()
-       # DNS
-        if args.d:
-            dnslookup(args.d)
-            exit()
-       # Extrack links
-        if args.e:
-            extract(args.e)
-            exit()
+       
+       
        # GeoIp
         if args.ip:
             geo(args.ip)
             exit() 
-       # Http header
-        if args.H:
-            httpheader(args.H)
-            exit()
-       # NMAP
-        if args.N:
-            nmap(args.N)
-            exit()
+       
+       
        # Check status dir 
  #       if args.R:
  #          print("[+] Check Dir Response")
@@ -184,10 +145,7 @@ def help():
  #          os.system('tput setaf 9')
  #          respondir(args.R)
  #          exit()
-       # subdomains
-        if args.sub:
-            sub(args.sub)
-            exit()
+       
        # scan web
         if args.url:
             urlscan(args.url)
@@ -196,15 +154,6 @@ def help():
         if args.T:
             traceroute(args.T)
             exit()
-       # github username
-        if args.username:
-            gitusers(args.username)
-            gitemails(args.username)
-            exit()
-       # whois
-        if args.whois:
-            whois(args.whois)
-            exit()
-        if args.crawl:
-            crawler(args.crawl)
-            exit()
+       
+       
+        
