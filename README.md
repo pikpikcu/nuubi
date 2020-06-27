@@ -1,6 +1,6 @@
 ### Nuubi Tools (Scanner, Recon.)
 
-<h4 align="center"><img src="https://raw.githubusercontent.com/pikpikcu/nuubi/master/NUUBI.png" width="300px" height="300px">
+<h4 align="center"><img src="https://raw.githubusercontent.com/pikpikcu/nuubi/master/img/NUUBI.png" width="300px" height="300px">
 </a>
 <h4 align="center">Details</h4>                
 <p align="center">
@@ -24,43 +24,40 @@
 </p>
 
 
-![](https://raw.githubusercontent.com/pikpikcu/nuubi/master/logo.png)
-
->     
-
+> 
     
-      usage: nuub.py [-h] [-b Banner] [-S subnetlookup] [-c] [--cert Certificate]
-                    [-d Dns] [-e Extract] [-ip GeoIP] [-H Httpheaders] [-N nmap]
-                    [--sub subdomain] [-T traceroute] [-f findshareddns]
-                    [--url Url] [--username Username] [--whois Whois]
-                    [--crawl crawl] [--reverse reverse] [--revdns revdns]
-                    [--zone zone] [--nping nping] [--AS aslookup] [--cookie cookie]
+    Options:    
+          -h/--help       |  Show help message and exit
 
-      optional arguments:
-        -h, --help           show this help message and exit
-        -b Banner            Banner grabing of target ip address
-        -S subnetlookup      subnetlookup of target
-        -c                   Cms detect with headers
-        --cert Certificate   Certificate Transparency log monitor
-        -d Dns               Dnslookup of target domain
-        -e Extract           Extract links from target url(https/http)
-        -ip GeoIP            GeoIP lookup of target ip address
-        -H Httpheaders       Httpheaders of target url
-        -N nmap              Nmapscan of target domain
-        --sub subdomain      Subdomain lookup of target domain
-        -T traceroute        Traceroute
-        -f findshareddns     Find hosts sharing DNS servers
-        --url Url            URL and website scanner for potentially malicious
-                            websites
-        --username Username  Github username of target
-        --whois Whois        Whois of target domain
-        --crawl crawl        crawler target url
-        --reverse reverse    reverse ip lookup
-        --revdns revdns      reverse DNS
-        --zone zone          zonetransfer, Retrieve DNS Zone
-        --nping nping        nping, test Ping Response
-        --AS aslookup        Check an Autonomous System Number (ASN)
-        --cookie cookie      Cloudflare cookie scraper
+    Arguments: 
+
+            -b/--banner    | Banner grabing of target ip address
+            -s/--subnet    | Subnetlookup of target       
+            -c/--cms       | Cms detect with headers
+            -d/--dns       | Dnslookup of target domain
+            -e/--extract   | Extract links from target url(https/http)
+            -H/--http      | Httpheaders of target url
+            -n/--nmap      | Nmapscan of target domain
+            -S/--sub       | Subdomain lookup of target domain
+            -f/--find      | Find hosts sharing DNS servers
+            -u/--username  | Github username of target
+            -w/--whois     | Whois of target domain
+            -C/--crawl     | Crawler target url
+            -r/--reverse   | Reverse ip lookup
+            -z/--zone      | zonetransfer, Retrieve DNS Zone
+          
+            --asn          | Check an Autonomous System Number (ASN)
+            --nping        | nping, test Ping Response
+            --cookie       | Cloudflare cookie scraper
+            --revdns       | Reverse DNS
+            --cert         | Certificate Transparency log monitor
+            --url          | URL and website scanner for potentially malicious websites
+            --response     | Check code status response
+            --exj          | Extract GET parameters from javascript files
+
+            -ip            | GeoIP lookup of target ip address 
+            -T             | Traceroute
+
 
 #### ✔️ ***Example***:
 
